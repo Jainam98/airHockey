@@ -16,8 +16,8 @@ public class Ball {
     private int length;
     private int x;
     private int y;
-    private int horizontalDirection;
-    private int verticalDirection; 
+    private int horDir;
+    private int verDir; 
     private static final int RIGHT = 1;
     private static final int LEFT = 0;
     private static final int DOWN = 0;
@@ -34,26 +34,24 @@ public class Ball {
     * @param width - width of the ball
     * @return none
     */
-    public Ball(int x,int y,int length, int width) {
-    	
-    	System.out.println("Hi");
+    public Ball(int x,int y,int length, int width) { 
     	
         this.x = x;
         this.y = y;
         this.width = width;
         this.length = length;
         
-        int selector = (int)(Math.random() * 12) + 1 ;
+        int random = (int)(Math.random() * 12) + 1 ;
         
-        if (selector>8){ 
-            this.horizontalDirection= Ball.RIGHT;
-            this.verticalDirection= Ball.DOWN; 
-        }else if (selector>4){
-            this.verticalDirection= Ball.UP;
-            this.horizontalDirection= Ball.LEFT; 
+        if (random>8){ 
+            this.horDir= Ball.RIGHT;
+            this.verDir= Ball.DOWN; 
+        }else if (random>4){
+            this.verDir= Ball.UP;
+            this.horDir= Ball.LEFT; 
         }else{
-            this.verticalDirection= Ball.DOWN;
-            this.horizontalDirection= Ball.LEFT;   
+            this.verDir= Ball.DOWN;
+            this.horDir= Ball.LEFT;   
         }
     }
     
@@ -62,20 +60,6 @@ public class Ball {
     */
     public double getLength (){
         return this.length;
-    }
-    
-    /*setter method for length
-    *@param length - int value of length
-    */
-    public void setLength ( int length ) {
-        this.length = length;
-    }
-    
-    /* setter method for width
-    *@param width - int value of width
-    */
-    public void setWidth (int width) {
-        this.width = width ;
     }
     
     /* getter method for width
@@ -92,19 +76,34 @@ public class Ball {
          return this.x;
     }
      
+    /* getter method for y
+     * @return the y value
+     */ 
+     public double getY (){
+    	 return this.y;
+     }      
+    
+    /*setter method for length
+    *@param length - int value of length
+    */
+    public void setLength ( int length ) {
+        this.length = length;
+    }
+    
+    /* setter method for width
+    *@param width - int value of width
+    */
+    public void setWidth (int width) {
+        this.width = width ;
+    } 
+     
     /* setter method for x
     *@param x - int value of x
     */
      public void setX (int x) {
        this.x = x;
      }
-     
-    /* getter method for y
-    * @return the y value
-    */     
-     public double getY (){
-         return this.y;
-     }
+
      
     /* setter method for y
     *@param y - int value of y
@@ -114,39 +113,40 @@ public class Ball {
      }
      
     /*change method for the x and y cords
-    *@param xChange - change in x 
-    *@param yChange - change in y
+    *@param changeInX - change in x 
+    *@param changeInY - change in y
     */
-    public void change(int xChange, int yChange){
-            this.x += xChange;
-            this.y += yChange;
+    public void change(int changeInX, int changeInY){
+            this.x += changeInX;
+            this.y += changeInY;
         }
     
     /* update method for the change in direction of ball
-    *@param xMax - change in x 
-    *@param yMax - change in y
+    *@param xMaximum - change in x 
+    *@param yMaximum - change in y
     *@param change - change in direction
     */
-    public void update(int xMax, int change, int yMax){
-            if (x + width >= xMax){
-                this.horizontalDirection = Ball.LEFT;
+    public void update(int xMaximum, int change, int yMaximum){
+    	
+            if (x + width >= xMaximum){
+                this.horDir = Ball.LEFT;
             } else if (x <= 0){
-                this.horizontalDirection = Ball.RIGHT;
+                this.horDir = Ball.RIGHT;
             }
 
-            if (y + width >= yMax){
-                this.verticalDirection = Ball.UP;
+            if (y + width >= yMaximum){
+                this.verDir = Ball.UP;
             } else if (y <= 50){
-                this.verticalDirection = Ball.DOWN;
+                this.verDir = Ball.DOWN;
             }
 
-            if(this.horizontalDirection == Ball.LEFT){
+            if(this.horDir == Ball.LEFT){
                 this.x -= change;
             } else {
                 this.x += change;
             }
 
-            if(this.verticalDirection == Ball.UP){
+            if(this.verDir == Ball.UP){
                 this.y -= change;
             } else {
                 this.y += change;
@@ -156,10 +156,10 @@ public class Ball {
     /* paddlehit method for the hits against the paddle
     */
     public void paddleHit(){
-        if (horizontalDirection==Ball.RIGHT){
-            horizontalDirection=Ball.LEFT;
+        if (horDir==Ball.RIGHT){
+            horDir=Ball.LEFT;
         }else{
-            horizontalDirection=Ball.RIGHT;
+            horDir=Ball.RIGHT;
         }
     }
 

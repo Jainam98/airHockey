@@ -9,14 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.Timer;
 
     /* PongPanel class, used to initilize variables
-    * also reates new form PongPanel 
-    * 
+    * also reates new form PongPanel    
     */
 public class PongPanel extends javax.swing.JPanel {
     
@@ -35,14 +32,13 @@ public class PongPanel extends javax.swing.JPanel {
         this.computerPaddle = new Paddle (570,120,120,20); 
         this.theBall = new Ball (270,120,25,25);
 
-              //set a timer
+        //set a timer
         Timer myTimer = new Timer(30, new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-
                 formActionPerformed(evt);
             }
-
         });
+        
         myTimer.start();
         this.setFocusable(true);
         this.requestFocusInWindow();

@@ -14,14 +14,13 @@ public class GameMain extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	final static int WINDOW_WIDTH = 600;
-    final static int WINDOW_HEIGHT = 400;
+	final static int fWidth = 600;
+    final static int fHeight = 400;
 
-    public GameMain() {
-      
+    public GameMain() {      
       
         super(" Air Hockey ");
-        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        setSize(fWidth, fHeight);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(Color.BLACK);

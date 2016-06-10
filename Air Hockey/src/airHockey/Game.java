@@ -13,11 +13,13 @@ import java.awt.event.KeyEvent;
   */
 public class Game {
   
-  int playerScore = 0; 
-  int computerScore=0; 
+  int pScore = 0; 
+  int aiScore = 0; 
+  
   boolean reset=false;
   boolean endGame=false;
   boolean paddleHit=false;
+  
   String winner; 
   Paddle playerPaddle = new Paddle (0,150,90,10);
   Paddle computerPaddle = new Paddle (585,150,90,10);
@@ -26,28 +28,35 @@ public class Game {
   public Game () {   
     
   }
+  
   /** The paint method, used to draw out and fill in shapes & lines
     * @param g - graphics variable used to set and fill colour
     */
+  
   public void paint (Graphics g) {
+	  
     g.setColor (Color.BLACK);
     g.fillRect(0, 0, 600, 400);
+    
     if (reset==false){
+    	
       ball.paint(g); 
       playerPaddle.paint(g);
       computerPaddle.paint(g);
-      String score1 = String.valueOf(playerScore);
       
-      //update fonts and sizeee
-      g.drawString("Player: "+score1,150,45);
-      String score2 = String.valueOf(computerScore);
+      String score1 = String.valueOf(pScore);
       
-      g.drawString("Computer: "+score2,400,45); 
+      g.setFont(new Font("TimesRoman", Font.PLAIN, 20)); 
+      g.setColor(Color.GREEN);
+      
+      g.drawString("Player: "+score1,150,45);       
+      String score2 = String.valueOf(aiScore);      
+      g.drawString("Computer: "+score2,400,45);       
+      
       
       g.drawLine(300,0,300,400);
       g.drawLine(0,50,600,50);
-      g.drawOval(275, 175, 50, 50);
-      
+      g.drawOval(275, 175, 50, 50);      
       
       
     }else{
@@ -64,7 +73,7 @@ public class Game {
     	  Font myFont = new Font ("Times New Roman", 1, 20);
     	  g.setColor(Color.CYAN);
     	  g.setFont(myFont);
-    	  g.drawString(winner , 200, 200);
+    	  g.drawString(winner , 120, 200);
       }
     }
     
@@ -73,21 +82,26 @@ public class Game {
      */
   }
   public void update (){
-    if (ball.getX()<5  ){
+	  
+    if (ball.getX() <5  ){
       reset = true;
-      computerScore++;
-      if (computerScore==5){
+      aiScore++;
+      
+      if (aiScore == 5){
         endGame=true;
         winner = "Computer Wins !! Better luck next time!"; 
       }
       
-    }else if (ball.getX()>590){
+    } else if (ball.getX() > 590){
+    	
       reset = true; 
-      playerScore++;
-      if (playerScore==5){
+      pScore++;
+      
+      if (pScore==5){
         endGame=true;
         winner = "Player Wins !!"; 
       } 
+      
     }else{
       int speed; 
       
@@ -104,7 +118,7 @@ public class Game {
     // collision with human paddle 
     
     
-    if ((ball.getX()<10) && ((ball.getY()>playerPaddle.getY() || ball.getY()+25>playerPaddle.getY())&&(ball.getY()<playerPaddle.getY()+playerPaddle.getLength()))){
+    if ((ball.getX() < 10) && ((ball.getY() > playerPaddle.getY() || ball.getY() + 25 > playerPaddle.getY())&&(ball.getY()<playerPaddle.getY()+playerPaddle.getLength()))){
       ball.paddleHit();
       paddleHit=true; 
     }
@@ -118,10 +132,12 @@ public class Game {
    * @param e - used as a variable for keyboard recognizition
    */
   public void moveHumanPaddle(KeyEvent e){
+	  
     if(e.getKeyCode() == KeyEvent.VK_DOWN){
       this.playerPaddle.change (10);
     } else if(e.getKeyCode() == KeyEvent.VK_UP){
       this.playerPaddle.change (-10);
+      
     } 
   }
 }

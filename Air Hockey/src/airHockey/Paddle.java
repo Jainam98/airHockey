@@ -29,6 +29,7 @@ public class Paddle {
     * @param length - length of paddle
     * @param width - width of paddle
     */
+    
     public Paddle(int x,int y,int length, int width) {
         this.x = x;
         this.y = y;
@@ -117,7 +118,7 @@ public class Paddle {
     *@param g - graphics variable used to set and fill colour of paddle
     */ 
     public void paint (Graphics g) {
-        g.setColor(Color.GREEN);
+        g.setColor(Color.red);
         g.fillRect(x, y, width, length);
     }
 }
