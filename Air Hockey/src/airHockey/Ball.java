@@ -36,6 +36,8 @@ public class Ball {
     */
     public Ball(int x,int y,int length, int width) {
     	
+    	System.out.println("Hi");
+    	
         this.x = x;
         this.y = y;
         this.width = width;
